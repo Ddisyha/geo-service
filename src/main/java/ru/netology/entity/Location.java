@@ -1,20 +1,16 @@
 package ru.netology.entity;
 
 public class Location {
-
     private final String city;
-
     private final Country country;
-
     private final String street;
+    private final int building;
 
-    private final int builing;
-
-    public Location(String city, Country country, String street, int builing) {
+    public Location(String city, Country country, String street, int building) {
         this.city = city;
         this.country = country;
         this.street = street;
-        this.builing = builing;
+        this.building = building;
     }
 
     public String getCity() {
@@ -29,7 +25,7 @@ public class Location {
         return street;
     }
 
-    public int getBuiling() {
-        return builing;
+    public int getBuilding() {
+        return building;
     }
 }
