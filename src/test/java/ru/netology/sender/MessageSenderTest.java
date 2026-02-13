@@ -79,4 +79,12 @@ public class MessageSenderTest {
         LocalizationService localizationService = new LocalizationServiceImpl();
         assertEquals("Welcome", localizationService.locale(Country.USA));
     }
+
+    @Test
+    void send() {
+    }
+
+    @Test
+    void testSend() {
+    }
 }
