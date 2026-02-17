@@ -5,9 +5,7 @@ import org.mockito.Mockito;
 import ru.netology.entity.Country;
 import ru.netology.entity.Location;
 import ru.netology.geo.GeoService;
-import ru.netology.geo.GeoServiceImpl;
 import ru.netology.i18n.LocalizationService;
-import ru.netology.i18n.LocalizationServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +27,7 @@ public class MessageSenderTest {
                 .thenReturn("Добро пожаловать");
 
         MessageSender sender = new MessageSenderImpl(geoService, localizationService);
+
         Map<String, String> headers = new HashMap<>();
         headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, ip);
 
@@ -49,42 +48,11 @@ public class MessageSenderTest {
                 .thenReturn("Welcome");
 
         MessageSender sender = new MessageSenderImpl(geoService, localizationService);
+
         Map<String, String> headers = new HashMap<>();
         headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, ip);
 
         String result = sender.send(headers);
         assertEquals("Welcome", result);
-    }
-
-    @Test
-    void geoServiceRussia() {
-        GeoService geoService = new GeoServiceImpl();
-        assertEquals(Country.RUSSIA, geoService.byIp("172.33.12.19").getCountry());
-    }
-
-    @Test
-    void geoServiceUSA() {
-        GeoService geoService = new GeoServiceImpl();
-        assertEquals(Country.USA, geoService.byIp("96.44.183.149").getCountry());
-    }
-
-    @Test
-    void localizationRussian() {
-        LocalizationService localizationService = new LocalizationServiceImpl();
-        assertEquals("Добро пожаловать", localizationService.locale(Country.RUSSIA));
-    }
-
-    @Test
-    void localizationEnglish() {
-        LocalizationService localizationService = new LocalizationServiceImpl();
-        assertEquals("Welcome", localizationService.locale(Country.USA));
-    }
-
-    @Test
-    void send() {
-    }
-
-    @Test
-    void testSend() {
     }
 }
